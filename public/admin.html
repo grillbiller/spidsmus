@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Den Sortsnuede Spidsmus</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+</head>
+<body>
+
+  <header>
+    <div class="brand-container">
+      <span class="brand-icon">⚙️</span>
+      <h1>Admin Kontrolpanel</h1>
+    </div>
+    <div class="subtitle">Spidsmus QR-Jagt Administration</div>
+  </header>
+
+  <main class="admin-grid">
+    <section class="game-card">
+      <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; color: var(--warm-sand); margin-bottom: 1.5rem;">Spil Indstillinger</h2>
+      
+      <div class="admin-form-group">
+        <label for="target-count">Antal QR koder der skal findes totalt:</label>
+        <input type="number" id="target-count" class="admin-input" value="200" min="1" max="1000">
+      </div>
+
+      <div class="admin-actions">
+        <button id="save-settings" class="admin-btn admin-btn-save">Gem Indstillinger</button>
+        <button id="reset-game" class="admin-btn admin-btn-reset">Nulstil Alt Data (Reset)</button>
+      </div>
+    </section>
+
+    <section class="game-card">
+      <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; color: var(--warm-sand); margin-bottom: 1.5rem;">Print QR Koder</h2>
+      <p style="margin-bottom: 1rem; opacity: 0.8; font-size: 0.9rem;">
+        Generer QR-koder til ophængning. De vil blive genereret med ID'erne <code>SPIDSMUS_001</code>, <code>SPIDSMUS_002</code>, osv.
+      </p>
+      
+      <div class="admin-form-group">
+        <label for="print-count">Hvor mange koder vil du printe?</label>
+        <input type="number" id="print-count" class="admin-input" value="200" min="1" max="1000">
+      </div>
+
+      <div class="admin-actions">
+        <button id="prepare-print" class="admin-btn admin-btn-print">Forbered Print-ark</button>
+      </div>
+    </section>
+
+    <a href="index.html" style="color: var(--amber-gold); text-decoration: none; font-weight: bold; text-align: center; margin-top: 1rem;">← Tilbage til Scoreboard</a>
+  </main>
+
+  <!-- Printable section (hidden on screen) -->
+  <div id="print-section" class="print-section">
+    <!-- Pages will be injected here by JS -->
+  </div>
+
+  <footer>
+    Administration &copy; 2026 | Spidsmus QR Jagt v1.0
+  </footer>
+
+  <script src="./js/admin.js"></script>
+</body>
+</html>

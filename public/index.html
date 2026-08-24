@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Den Sortsnuede Spidsmus - Red Gården</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <!-- Include QRIous library for generating the Start QR Code dynamically -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+</head>
+<body>
+
+  <header>
+    <div class="brand-container">
+      <span class="brand-icon">🐭</span>
+      <h1>Den Sortsnuede Spidsmus</h1>
+    </div>
+    <div class="subtitle">Red Gården - Det Store QR-Jagt Event</div>
+  </header>
+
+  <main class="dashboard-grid">
+    <!-- Main Scoreboard Column -->
+    <section class="game-card center-card">
+      <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; color: var(--warm-sand);">QR-Koder Tilbage At Finde</h2>
+      
+      <div class="countdown-display">
+        <div id="countdown" class="countdown-number">...</div>
+        <div class="countdown-label">unfundne spidsmus spor</div>
+      </div>
+
+      <div class="progress-container">
+        <div class="progress-labels">
+          <span>Spor fundet: <span id="found-count">0</span>/<span id="target-count-display">...</span></span>
+          <span id="percent-display">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="progress-fill" class="progress-bar-fill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sidebar Column (QR and Log) -->
+    <div class="sidebar-panel">
+      <!-- Start QR Card -->
+      <section class="game-card qr-card">
+        <h3 class="qr-title">Deltag i Jagten!</h3>
+        <p class="qr-subtext">Scan denne kode med din mobil for at åbne din personlige spor-scanner</p>
+        <div class="qr-wrapper">
+          <canvas id="start-qr"></canvas>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--amber-gold); font-weight: bold;">
+          Scan & Gå på Opdagelse!
+        </div>
+      </section>
+
+      <!-- Real-Time Activity Log -->
+      <section class="game-card log-card">
+        <h3 class="log-title">
+          <span class="log-pulse-dot"></span>
+          Seneste Spor Fundet
+        </h3>
+        <ul id="log-list" class="log-list">
+          <li id="log-empty" class="log-empty">Ingen spor registreret endnu. Begynd at scanne!</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <!-- Victory Overlay Screen -->
+  <div id="victory-overlay">
+    <canvas id="confetti-canvas" class="victory-canvas"></canvas>
+    <div class="victory-card">
+      <div class="victory-illustration">
+        <!-- Cute Custom SVG of the black-snouted shrew (spidsmus) with a party hat -->
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Tiny Tail -->
+          <path d="M18,68 Q3,62 8,46" fill="none" stroke="#e8a7a1" stroke-width="2.5" stroke-linecap="round" />
+          <!-- Cute feet -->
+          <ellipse cx="32" cy="71" rx="5" ry="2.5" fill="#423024" />
+          <ellipse cx="62" cy="71" rx="5" ry="2.5" fill="#423024" />
+          <!-- Shrew Body -->
+          <path d="M18,68 Q35,35 68,46 Q83,51 88,61 Q93,66 83,69 Q68,71 18,68 Z" fill="#212824" />
+          <!-- Black Snout (sortsnuet) -->
+          <path d="M78,48 Q94,46 97,50 Q94,54 83,52 Z" fill="#0d110f" />
+          <!-- Pink Nose Tip -->
+          <circle cx="97" cy="50" r="2.5" fill="#ff7675" />
+          <!-- Cute Whiskers -->
+          <line x1="86" y1="52" x2="93" y2="58" stroke="#ffffff" stroke-width="0.7" />
+          <line x1="86" y1="50" x2="95" y2="52" stroke="#ffffff" stroke-width="0.7" />
+          <line x1="86" y1="48" x2="91" y2="42" stroke="#ffffff" stroke-width="0.7" />
+          <!-- Cute Eye -->
+          <circle cx="72" cy="49" r="2.5" fill="#ffffff" />
+          <circle cx="72.5" cy="48.5" r="1" fill="#000000" />
+          <!-- Party Hat -->
+          <polygon points="62,43 72,22 75,41" fill="#e5a91a" />
+          <circle cx="72" cy="22" r="2.5" fill="#ffffff" />
+          <!-- Small cute pink cheek -->
+          <circle cx="76" cy="54" r="2" fill="#ff7675" opacity="0.6" />
+        </svg>
+      </div>
+      <h2 class="victory-title">TILLYKKE!<br>GÅRDEN ER REDDET</h2>
+      <p class="victory-message">Den sagnomspundne, sortsnuet spidsmus er fundet efter intensiv eftersøgning!<br><br>Alle spor er indsamlet takket være jeres fantastiske samarbejde!</p>
+      <button class="btn btn-primary" onclick="window.closeVictory()">Se Resultattavlen</button>
+    </div>
+  </div>
+
+  <!-- Admin Link -->
+  <a href="admin.html" class="admin-trigger" title="Admin Kontrolpanel">⚙️</a>
+
+  <footer>
+    Udviklet til dalbynight.ddns.net &copy; 2026 | Spidsmus QR Jagt v1.0
+  </footer>
+
+  <script src="./js/dashboard.js"></script>
+</body>
+</html>

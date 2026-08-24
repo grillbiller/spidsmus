@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Spidsmus - QR Scanner</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <!-- Include html5-qrcode library for browser-based QR code scanning -->
+  <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+
+  <header style="padding: 1.5rem 1rem 0.5rem;">
+    <div class="brand-container">
+      <span class="brand-icon">🔎🐭</span>
+      <h1 style="font-size: 1.8rem;">Spidsmus Scanner</h1>
+    </div>
+    <div class="subtitle" style="font-size: 0.8rem; margin-top: 0.1rem;">Mobil Spor-Registrering</div>
+  </header>
+
+  <main class="mobile-container">
+    <section class="game-card scanner-view">
+      <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.2rem; color: var(--amber-gold);">Scan et spidsmus spor</h2>
+      <p style="font-size: 0.85rem; color: var(--warm-sand-dark); margin-top: 0.25rem;">Scan en unik QR-kode for at registrere et fundet spor</p>
+
+      <!-- The Scanner Frame -->
+      <div class="scanner-box">
+        <!-- Target overlay and moving laser, only visible during active scanning -->
+        <div id="scanner-visuals" style="display: none;">
+          <div class="scanner-target"></div>
+          <div class="scanner-laser"></div>
+        </div>
+
+        <!-- Camera stream output container -->
+        <div id="reader"></div>
+
+        <!-- Static placeholder prior to camera activation -->
+        <div id="placeholder" class="scanner-placeholder">
+          <span class="scanner-placeholder-icon">📷</span>
+          <p style="font-weight: bold; font-size: 1.05rem;">Kameraet er klar</p>
+          <p style="font-size: 0.85rem; opacity: 0.8;">Klik på knappen nedenfor for at starte din mobilscanner og give kameratilladelse.</p>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <button id="scan-btn" class="btn btn-primary">
+        <span>Aktiver Scanner</span> 📷
+      </button>
+    </section>
+  </main>
+
+  <!-- Scan Feedback Modal Dialog -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div id="modal" class="modal">
+      <span id="modal-icon" class="modal-icon">🎉</span>
+      <h2 id="modal-title" class="modal-title">Status</h2>
+      <p id="modal-message" class="modal-message">Resultat af scanningen vises her...</p>
+      <button class="btn btn-secondary" onclick="window.closeModal()">
+        <span>Scan igen</span> 🔄
+      </button>
+    </div>
+  </div>
+
+  <footer>
+    Udviklet til dalbynight.ddns.net &copy; 2026 | Spidsmus QR Jagt v1.0
+  </footer>
+
+  <script src="./js/scanner.js"></script>
+</body>
+</html>
