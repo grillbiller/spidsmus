@@ -176,6 +176,7 @@ const progressFillEl = document.getElementById('progress-fill');
 const logListEl = document.getElementById('log-list');
 const logEmptyEl = document.getElementById('log-empty');
 const victoryOverlay = document.getElementById('victory-overlay');
+const sessionTitleEl = document.getElementById('session-title');
 
 let globalTargetCount = 200;
 
@@ -250,6 +251,8 @@ async function fetchInitialStatus() {
     const data = await res.json();
     if (data.success) {
       globalTargetCount = data.target_count || 200;
+      if (sessionTitleEl) sessionTitleEl.textContent = data.session_title || 'Spidsmus';
+      document.title = `${data.session_title || 'Spidsmus'} - Den Sortsnuede Spidsmus`;
       updateScoreboard(data.count, data.remaining, data.completed, globalTargetCount);
       
       // Clean log list
@@ -305,6 +308,8 @@ function connectSSE() {
         handleResetEvent();
       } else if (data.type === 'settings_update') {
         handleSettingsUpdate(data);
+      } else if (data.type === 'session_update') {
+        fetchInitialStatus();
       }
     } catch (err) {
       console.error('Fejl ved parsing af SSE event:', err);
